@@ -32,14 +32,14 @@ galaxy_info:
   #
   # platforms is a list of platforms, and each platform has a name and a list of versions.
   #
-   platforms:
-     - name: Ubuntu
-       versions:
-         - 16.04
-         - 16.10
-     - name: CoreOS
-       versions:
-         - all
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 16.04
+        - 16.10
+    - name: CoreOS
+      versions:
+        - all
   # - name: Fedora
   #   versions:
   #   - all
