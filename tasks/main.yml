@@ -17,11 +17,11 @@
   args:
     chdir: "{{path}}"
 
- - name: create empty db
-   tags: docker
-   command: /opt/bin/docker-compose run --rm web bundle exec rake db:migrate
-   args:
-     chdir: "{{path}}"
+# - name: create empty db
+#   tags: docker
+#   command: /opt/bin/docker-compose run --rm web bundle exec rake db:migrate
+#   args:
+#     chdir: "{{path}}"
 
 - name: start sharepass
   systemd: 
