@@ -1,0 +1,15 @@
+[Unit]
+Description=sharepass.service
+After=nginx-proxy.service
+Requires=nginx-proxy.service
+
+[Service]
+TimeoutStartSec=0
+Type=simple
+WorkingDirectory={{path}}
+ExecStart=/opt/bin/docker-compose -f {{path}}/docker-compose.yml up
+ExecStartPost=-/bin/docker restart nginx-proxy
+ExecStop=/opt/bin/docker-compose -f {{path}}/docker-compose.yml stop
+
+[Install]
+WantedBy=multi-user.target

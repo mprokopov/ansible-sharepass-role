@@ -1,0 +1,8 @@
+ web:
+   image: registry.it-expert.com.ua/nexus/sharepass
+   volumes:
+     - .:/app/sqlite
+   environment:
+     - VIRTUAL_HOST={{web_host_name}}
+     - RAILS_ENV={{rails_env}}
+     - HTTPS_METHOD=noredirect

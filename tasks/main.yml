@@ -1,0 +1,33 @@
+- name: create working dir
+  file: path="{{path}}" state=directory
+
+- name: copy sharepass service
+  tags: docker
+  template: src=./files/sharepass.service.j2 dest=/etc/systemd/system/sharepass.service
+  become: true
+  become_user: root
+
+- name: copy docker-compose.yml
+  tags: docker
+  template: src=./files/docker-compose.yml.j2 dest="{{path}}/docker-compose.yml"
+
+- name: pull and up docker service
+  tags: docker
+  command: /opt/bin/docker-compose create
+  args:
+    chdir: "{{path}}"
+
+ - name: create empty db
+   tags: docker
+   command: /opt/bin/docker-compose run --rm web bundle exec rake db:migrate
+   args:
+     chdir: "{{path}}"
+
+- name: start sharepass
+  systemd: 
+    name: sharepass
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  become: true
+  become_user: root

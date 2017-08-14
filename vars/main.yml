@@ -1,0 +1,3 @@
+path: /home/core/sharepass
+web_host_name: sharepass.it-premium.local
+rails_env: production
